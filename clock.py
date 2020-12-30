@@ -1,5 +1,5 @@
 import requests
-from datetime import date
+from datetime import datetime
 
 response = requests.get('http://area.sinaapp.com/bingImg/')
 now = datetime.now()
