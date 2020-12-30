@@ -2,8 +2,7 @@ import requests
 from datetime import datetime
 
 response = requests.get('http://area.sinaapp.com/bingImg/')
-now = datetime.now()
-now = now.strftime("%d/%m/%Y %H:%M:%S")
+now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
 with open('README.md', 'w') as f:
     f.write('# github clock in\n')
