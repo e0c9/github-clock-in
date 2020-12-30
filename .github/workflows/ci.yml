@@ -1,0 +1,27 @@
+name: ci
+
+on:
+    push:
+    schedule:
+        - cron: "0 0 * * *"
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+    
+    steps:
+        - name: clone repository
+          uses: actions/checkout@v2
+
+        - name: clock in
+          run: |
+              git config --local user.email 'tanhaoyc@gmail.com'
+              git config --local user.name 'tanhao'
+              git remote set-url origin https://${{ github.actor }}:${{ secrets.CLOCK_TOKEN }}@github.com/${{ github.repository }}
+              git pull --rebase
+              pip3 install requests
+              python3 clock.py
+              git add .
+              git commit -m 'update by clock-in'
+              git push
+
